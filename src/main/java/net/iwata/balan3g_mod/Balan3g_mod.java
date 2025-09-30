@@ -1,6 +1,11 @@
 package net.iwata.balan3g_mod;
 
 import com.mojang.logging.LogUtils;
+import net.iwata.balan3g_mod.block.ModBlocks;
+import net.iwata.balan3g_mod.item.ModCreativeModTabs;
+import net.iwata.balan3g_mod.item.ModItems;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,12 +20,18 @@ import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Balan3g_mod.MOD_ID)
+@SuppressWarnings("removal")
 public class Balan3g_mod {
     public static final String MOD_ID = "balan3g_mod";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Balan3g_mod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModCreativeModTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -34,7 +45,9 @@ public class Balan3g_mod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
+            event.accept(ModItems.Balan);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

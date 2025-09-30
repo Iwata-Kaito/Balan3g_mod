@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "balan3g_mod:block/balan_in_cardboard_box_top_2",
+    "bottom": "minecraft:block/stripped_oak_log",
+    "side": "minecraft:block/stripped_oak_log"
+  }
+}
