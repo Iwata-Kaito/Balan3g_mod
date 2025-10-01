@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "balan3g_mod:crate_of_balan"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tutorialmod:blocks/crate_of_balan"
+}
