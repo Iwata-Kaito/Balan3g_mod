@@ -23,7 +23,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.Tied_up_Balan.get());
                         pOutput.accept(ModItems.Boxed_balan.get());
 
-                        pOutput.accept(ModBlocks.Balan_in_Cardboard_box.get());
+                        pOutput.accept(ModBlocks.Crate_of_Balan.get());
 
                     })
                     .build());

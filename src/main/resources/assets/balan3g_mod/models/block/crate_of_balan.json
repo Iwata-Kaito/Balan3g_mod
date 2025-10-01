@@ -1,0 +1,9 @@
+
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "balan3g_mod:block/crate_of_balan",
+    "bottom": "minecraft:block/spruce_planks",
+    "side": "minecraft:block/barrel_bottom"
+  }
+}

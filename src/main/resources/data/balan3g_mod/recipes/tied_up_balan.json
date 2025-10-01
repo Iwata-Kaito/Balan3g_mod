@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "balan3g_mod:balan"
+    }
+  },
+  "result": {
+    "item": "balan3g_mod:tied_up_balan"
+  }
+}

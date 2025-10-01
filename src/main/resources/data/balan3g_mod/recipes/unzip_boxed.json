@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [{"item": "balan3g_mod:boxed_balan"}],
+    "result": {
+        "item": "balan3g_mod:tied_up_balan",
+        "count": 8
+    }
+}

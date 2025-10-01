@@ -19,7 +19,7 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Balan3g_mod.MOD_ID);
 
-    public static final RegistryObject<Block> Balan_in_Cardboard_box = registerBlock("balan_in_cardboard_box",
+    public static final RegistryObject<Block> Crate_of_Balan = registerBlock("crate_of_balan",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
