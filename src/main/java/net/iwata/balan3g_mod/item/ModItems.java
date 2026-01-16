@@ -17,6 +17,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> Boxed_balan = ITEMS.register("boxed_balan",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> broken_Balan_Key = ITEMS.register("broken_balan_key",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> Balan_Key = ITEMS.register("balan_key",
+            () -> new Item(new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {

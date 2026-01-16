@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "#K#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "balan3g_mod:crate_of_balan"
+    },
+    "K" : {
+      "item": "balan3g_mod:broken_balan_key"
+    }
+  },
+  "result": {
+    "item": "balan3g_mod:balan_key"
+  }
+}

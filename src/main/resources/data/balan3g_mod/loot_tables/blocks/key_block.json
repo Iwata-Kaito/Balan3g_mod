@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "balan3g_mod:crate_of_balan"
+          "name": "balan3g_mod:broken_balan_key"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "balan3g_mod:blocks/crate_of_balan"
+  "random_sequence": "balan3g_mod:blocks/key_block"
 }

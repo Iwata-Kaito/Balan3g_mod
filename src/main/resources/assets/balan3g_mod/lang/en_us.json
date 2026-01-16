@@ -2,7 +2,10 @@
   "item.balan3g_mod.balan": "Balan",
   "item.balan3g_mod.tied_up_balan": "Tied up Balan",
   "item.balan3g_mod.boxed_balan": "Boxed Balan",
+  "item.balan3g_mod.broken_balan_key": "Broken Balan Key",
+  "item.balan3g_mod.balan_key": "Balan Key",
   "block.balan3g_mod.crate_of_balan": "Crate of Balan",
+  "block.balan3g_mod.key_block" : "Key Block",
 
   "creativetab.balan3g_mod_tab": "Balan3g Tab"
 }

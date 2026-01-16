@@ -22,6 +22,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> Crate_of_Balan = registerBlock("crate_of_balan",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
+    public static final RegistryObject<Block> Key_block = registerBlock("key_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
