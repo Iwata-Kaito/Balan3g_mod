@@ -2,9 +2,12 @@ package net.iwata.balan3g_mod;
 
 import com.mojang.logging.LogUtils;
 import net.iwata.balan3g_mod.block.ModBlocks;
+import net.iwata.balan3g_mod.entity.ModEntities;
+import net.iwata.balan3g_mod.entity.client.Living_BalanRenderer;
 import net.iwata.balan3g_mod.item.ModCreativeModTabs;
 import net.iwata.balan3g_mod.item.ModItems;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -61,7 +64,7 @@ public class Balan3g_mod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            EntityRenderers.register((ModEntities.Living_Balan.get()), Living_BalanRenderer::new);
         }
     }
 }
