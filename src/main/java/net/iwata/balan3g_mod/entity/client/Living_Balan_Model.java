@@ -5,6 +5,8 @@ package net.iwata.balan3g_mod.entity.client;// Made with Blockbench 4.12.6
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.iwata.balan3g_mod.entity.animations.ModAnimationDefinitions;
+import net.iwata.balan3g_mod.entity.custom.Living_BalanEntities;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -55,7 +57,9 @@ public class Living_Balan_Model<T extends Entity> extends HierarchicalModel<T> {
 
 	@Override
 	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.animateWalk(ModAnimationDefinitions.BALAN_WALK,limbSwing,limbSwingAmount,2f, 2.5f);
+        this.animate(((Living_BalanEntities) entity).idleAnimationState,ModAnimationDefinitions.BALAN_IDLE,ageInTicks,1f);
 	}
 
 	@Override
