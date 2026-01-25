@@ -2,9 +2,12 @@ package net.iwata.balan3g_mod;
 
 import com.mojang.logging.LogUtils;
 import net.iwata.balan3g_mod.block.ModBlocks;
+import net.iwata.balan3g_mod.entity.ModEntities;
+import net.iwata.balan3g_mod.entity.client.Living_BalanRenderer;
 import net.iwata.balan3g_mod.item.ModCreativeModTabs;
 import net.iwata.balan3g_mod.item.ModItems;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import software.bernie.geckolib.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Balan3g_mod.MOD_ID)
@@ -32,11 +36,14 @@ public class Balan3g_mod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
+
+        GeckoLib.initialize();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -61,7 +68,7 @@ public class Balan3g_mod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            EntityRenderers.register(ModEntities.Living_Balan.get(), Living_BalanRenderer::new);
         }
     }
 }
