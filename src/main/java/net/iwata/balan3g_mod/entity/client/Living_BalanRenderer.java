@@ -9,6 +9,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class Living_BalanRenderer extends GeoEntityRenderer<Living_BalanEntity> {
     public Living_BalanRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new Living_BalanModel());
+        this.shadowRadius = 0.4f;
     }
 
     @Override

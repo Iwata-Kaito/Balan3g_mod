@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -21,13 +20,15 @@ public class ModCreativeModTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.Balan.get());
                         pOutput.accept(ModItems.Tied_up_Balan.get());
-                        pOutput.accept(ModItems.Boxed_balan.get());
+                        pOutput.accept(ModItems.BOXED_BALAN.get());
                         pOutput.accept(ModItems.Balan_Key.get());
                         pOutput.accept(ModItems.broken_Balan_Key.get());
                         pOutput.accept(ModItems.Living_Balan_SPANW_EGG.get());
 
                         pOutput.accept(ModBlocks.Crate_of_Balan.get());
                         pOutput.accept(ModBlocks.Key_block.get());
+
+                        pOutput.accept(ModItems.Fried_Balan.get());
 
                     })
                     .build());
