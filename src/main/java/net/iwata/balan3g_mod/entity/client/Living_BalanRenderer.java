@@ -1,12 +1,9 @@
 package net.iwata.balan3g_mod.entity.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.entity.custom.Living_BalanEntity;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class Living_BalanRenderer extends GeoEntityRenderer<Living_BalanEntity> {

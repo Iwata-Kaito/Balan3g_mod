@@ -16,7 +16,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Living_BalanEntity>> Living_Balan =
             ENTITY_TYPES.register("living_balan",
                     () -> EntityType.Builder.of(Living_BalanEntity::new, MobCategory.MONSTER)
-                            .sized(0.6f, 0.9f)
+                            .sized(0.7f, 0.9f)
                             .build(new ResourceLocation(Balan3g_mod.MOD_ID, "living_balan").toString()));
 
 
