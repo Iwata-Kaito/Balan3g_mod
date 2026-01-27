@@ -7,7 +7,6 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -19,17 +18,18 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
-public class Living_BalanEntity extends Monster implements GeoEntity {
+public class Living_Boxed_BalanEntity extends Monster implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
-    public Living_BalanEntity(EntityType<? extends Monster> entityType, Level level) {
+    public Living_Boxed_BalanEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }
     public static AttributeSupplier setAttributes() {
         return Monster.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 14D)
-                .add(Attributes.ATTACK_DAMAGE, 3.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.25f).build();
+                .add(Attributes.MAX_HEALTH, 64D)
+                .add(Attributes.ATTACK_DAMAGE, 8.0f)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.6f)
+                .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
 
     }
 
@@ -41,7 +41,6 @@ public class Living_BalanEntity extends Monster implements GeoEntity {
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
 
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
     }
 
     @Override

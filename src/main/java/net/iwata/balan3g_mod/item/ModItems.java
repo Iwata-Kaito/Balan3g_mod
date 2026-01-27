@@ -25,6 +25,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> Living_Balan_SPANW_EGG = ITEMS.register("living_balan_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.Living_Balan, 0x0a8208, 0x0a6408, new Item.Properties()));
+    public static final RegistryObject<Item> Living_Boxed_Balan_SPANW_EGG = ITEMS.register("living_boxed_balan_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.Living_Boxed_Balan, 0xffffff, 0x0a6408, new Item.Properties()));
     public static final RegistryObject<Item> Fried_Balan = ITEMS.register("fried_balan",
             () -> new Item(new Item.Properties().food(ModFoods.FRIED_BALAN)));
 

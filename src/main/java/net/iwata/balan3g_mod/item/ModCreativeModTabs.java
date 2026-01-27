@@ -24,6 +24,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.Balan_Key.get());
                         pOutput.accept(ModItems.broken_Balan_Key.get());
                         pOutput.accept(ModItems.Living_Balan_SPANW_EGG.get());
+                        pOutput.accept(ModItems.Living_Boxed_Balan_SPANW_EGG.get());
 
                         pOutput.accept(ModBlocks.Crate_of_Balan.get());
                         pOutput.accept(ModBlocks.Key_block.get());

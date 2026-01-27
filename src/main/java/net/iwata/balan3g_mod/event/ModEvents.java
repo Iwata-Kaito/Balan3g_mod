@@ -3,6 +3,7 @@ package net.iwata.balan3g_mod.event;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.entity.custom.Living_BalanEntity;
+import net.iwata.balan3g_mod.entity.custom.Living_Boxed_BalanEntity;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -16,6 +17,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
         event.put(ModEntities.Living_Balan.get(), Living_BalanEntity.setAttributes());
+        event.put(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanEntity.setAttributes());
     }
 
     @SubscribeEvent
