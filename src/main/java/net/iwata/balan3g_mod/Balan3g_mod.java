@@ -17,6 +17,7 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -72,5 +73,14 @@ public class Balan3g_mod {
             EntityRenderers.register(ModEntities.Living_Balan.get(), Living_BalanRenderer::new);
             EntityRenderers.register(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanRenderer::new);
         }
+    }
+
+    public Balan3g_mod(FMLJavaModLoadingContext context)
+    {
+        IEventBus modEventBus = context.getModEventBus();
+
+        modEventBus.addListener(this::commonSetup);
+
+        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 }
