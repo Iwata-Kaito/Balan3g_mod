@@ -42,6 +42,8 @@ public class Balan3g_mod {
 
         modEventBus.addListener(this::commonSetup);
 
+        FMLJavaModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
 
@@ -73,14 +75,5 @@ public class Balan3g_mod {
             EntityRenderers.register(ModEntities.Living_Balan.get(), Living_BalanRenderer::new);
             EntityRenderers.register(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanRenderer::new);
         }
-    }
-
-    public Balan3g_mod(FMLJavaModLoadingContext context)
-    {
-        IEventBus modEventBus = context.getModEventBus();
-
-        modEventBus.addListener(this::commonSetup);
-
-        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 }

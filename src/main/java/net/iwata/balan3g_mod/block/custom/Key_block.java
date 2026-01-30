@@ -1,5 +1,6 @@
 package net.iwata.balan3g_mod.block.custom;
 
+import net.iwata.balan3g_mod.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +21,7 @@ public class Key_block extends Block {
             double spawnX = pPos.getX() + 0.5;
             double spawnY = pPos.getY();
             double spawnZ = pPos.getZ() + 0.5;
-            int count = 3;
+            long count = Config.SPAWN_COUNT.get();
 
             for (int i = 0; i < count; i++) {
                 var balan = ModEntities.Living_Boxed_Balan.get().create(pLevel);
