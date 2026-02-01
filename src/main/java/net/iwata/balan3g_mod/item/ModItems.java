@@ -2,6 +2,7 @@ package net.iwata.balan3g_mod.item;
 
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.entity.ModEntities;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,6 +30,15 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntities.Living_Boxed_Balan, 0xffffff, 0x0a6408, new Item.Properties()));
     public static final RegistryObject<Item> Fried_Balan = ITEMS.register("fried_balan",
             () -> new Item(new Item.Properties().food(ModFoods.FRIED_BALAN)));
+
+    public static final RegistryObject<Item> Protectgear_Helmet = ITEMS.register("protect_gear_helmet",
+            () -> new ArmorItem(ModArmorMaterials.Protect_Gear, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> Protectgear_Chestplate = ITEMS.register("protect_gear_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.Protect_Gear, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> Protectgear_Leggings = ITEMS.register("protect_gear_leggings",
+            () -> new ArmorItem(ModArmorMaterials.Protect_Gear, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> Protectgear_Boots = ITEMS.register("protect_gear_boots",
+            () -> new ArmorItem(ModArmorMaterials.Protect_Gear, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}

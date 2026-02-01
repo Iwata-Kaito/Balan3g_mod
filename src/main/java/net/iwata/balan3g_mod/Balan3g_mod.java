@@ -7,7 +7,6 @@ import net.iwata.balan3g_mod.entity.client.Living_BalanRenderer;
 import net.iwata.balan3g_mod.entity.client.Living_Boxed_BalanRenderer;
 import net.iwata.balan3g_mod.item.ModCreativeModTabs;
 import net.iwata.balan3g_mod.item.ModItems;
-import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -42,7 +41,7 @@ public class Balan3g_mod {
 
         modEventBus.addListener(this::commonSetup);
 
-        FMLJavaModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        FMLJavaModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Balan3g_mod_Config.SPEC, "Balan3g_mod_Config.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);

@@ -10,6 +10,11 @@
   "block.balan3g_mod.crate_of_balan": "Crate of Balan",
   "block.balan3g_mod.key_block" : "Key Block",
 
+  "item.balan3g_mod.protect_gear_helmet" : "Protect Gear Helmet",
+  "item.balan3g_mod.protect_gear_chestplate" : "Protect Gear Chestplate",
+  "item.balan3g_mod.protect_gear_leggings" : "Protect Gear Leggings",
+  "item.balan3g_mod.protect_gear_boots" : "Protect Gear Boots",
+
   "creativetab.balan3g_mod_tab": "Balan3g Tab",
 
   "entity.balan3g_mod.living_balan": "Living Balan",

@@ -31,6 +31,11 @@ public class ModCreativeModTabs {
 
                         pOutput.accept(ModItems.Fried_Balan.get());
 
+                        pOutput.accept(ModItems.Protectgear_Helmet.get());
+                        pOutput.accept(ModItems.Protectgear_Chestplate.get());
+                        pOutput.accept(ModItems.Protectgear_Leggings.get());
+                        pOutput.accept(ModItems.Protectgear_Boots.get());
+
                     })
                     .build());
 
