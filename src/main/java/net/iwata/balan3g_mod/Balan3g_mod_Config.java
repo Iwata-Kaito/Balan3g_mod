@@ -15,13 +15,19 @@ public class Balan3g_mod_Config
             .comment("Count spawned from Key Block")
             .defineInRange("spawn_count", 3, 1, Long.MAX_VALUE);
 
+    public static final ForgeConfigSpec.LongValue Protect_Gear_THRESHOLD = BUILDER
+            .comment("")
+            .comment("Protect Gear Threshold")
+            .defineInRange("protect_Gear_threshold", 10, 0, Long.MAX_VALUE);
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static long spawn_count;
+    public static long protect_Gear_threshold;
 
     @SubscribeEvent
-    static void onLoad(final ModConfigEvent event)
-    {
+    static void onLoad(final ModConfigEvent event) {
         spawn_count = SPAWN_COUNT.get();
+        protect_Gear_threshold = Protect_Gear_THRESHOLD.get();
     }
 }

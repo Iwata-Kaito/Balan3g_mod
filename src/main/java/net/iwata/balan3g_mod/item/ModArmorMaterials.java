@@ -1,10 +1,8 @@
 package net.iwata.balan3g_mod.item;
 
 import net.iwata.balan3g_mod.Balan3g_mod;
-import net.iwata.balan3g_mod.item.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -12,8 +10,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    Protect_Gear("protect_gear", 26, new int[]{ 5, 7, 5, 4 }, 25,
-            SoundEvents.ARMOR_EQUIP_IRON, 1f, 0f, () -> Ingredient.of(ModItems.BOXED_BALAN.get()));
+    Protect_Gear("protect_gear", 0, new int[]{ 3, 8, 6, 3 }, 25,
+            SoundEvents.ARMOR_EQUIP_IRON, 2f, 0.1f, () -> Ingredient.EMPTY);
 
 
     private final String name;

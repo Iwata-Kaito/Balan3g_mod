@@ -13,7 +13,7 @@ public class Protect_GearModel extends GeoModel<Protect_GearItem> {
 
     @Override
     public ResourceLocation getTextureResource(Protect_GearItem animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "textures/armor/test.png");
+        return new ResourceLocation(Balan3g_mod.MOD_ID, "textures/armor/protect_gear.png");
     }
 
     @Override
