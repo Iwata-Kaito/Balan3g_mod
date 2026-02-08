@@ -17,8 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Balan3g_mod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class ProtectGearEvents {
 
-    // ===== ダメージ調整（フルセット時のみ）=====
-    private static long THRESHOLD = 10;
+    private static long THRESHOLD = 5;
 
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
