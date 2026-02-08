@@ -10,7 +10,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
@@ -20,17 +19,15 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Balan3g_mod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class ProtectGearEvents {
 
-    private static long THRESHOLD = 5;
-
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
-        THRESHOLD = Balan3g_mod_Config.Protect_Gear_THRESHOLD.get();
+        float THRESHOLD = Balan3g_mod_Config.Protect_Gear_THRESHOLD.get();
         LivingEntity living = event.getEntity();
         if (living.level().isClientSide) return;
 
         if (!isWearingFullProtectGear(living)) return;
 
-        long dmg = (long) event.getAmount();
+        float dmg = event.getAmount();
         if (dmg <= 0.0f) return;
 
         if (dmg <= THRESHOLD) {
@@ -38,7 +35,7 @@ public final class ProtectGearEvents {
             return;
         }
 
-        event.setAmount(Math.max(0.0f, (float) dmg / 2));
+        event.setAmount(Math.max(0.0f, (float) Math.floor(dmg / 2.0)));
     }
 
     @SubscribeEvent
