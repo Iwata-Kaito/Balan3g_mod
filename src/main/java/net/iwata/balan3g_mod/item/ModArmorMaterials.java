@@ -10,8 +10,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    Protect_Gear("protect_gear", 0, new int[]{ 3, 8, 6, 3 }, 25,
-            SoundEvents.ARMOR_EQUIP_IRON, 2f, 0.1f, () -> Ingredient.EMPTY);
+    Protect_Gear("protect_gear", 0, new int[]{ 4, 9, 7, 4 }, 25,
+            SoundEvents.ARMOR_EQUIP_IRON, 3f, 10.0f, () -> Ingredient.EMPTY);
 
 
     private final String name;

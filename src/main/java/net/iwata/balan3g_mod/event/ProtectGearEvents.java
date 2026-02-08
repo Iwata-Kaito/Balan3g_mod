@@ -9,6 +9,9 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -64,5 +67,27 @@ public final class ProtectGearEvents {
 
     private static boolean isProtectGear(ItemStack stack) {
         return !stack.isEmpty() && stack.getItem() instanceof Protect_GearItem;
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTickGiveBuffs(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+
+        var player = event.player;
+        if (player.level().isClientSide) return;
+
+        if (!isWearingFullProtectGear(player)) return;
+
+        ensureEffect(player, MobEffects.NIGHT_VISION, 310, 0);
+        ensureEffect(player, MobEffects.FIRE_RESISTANCE, 310, 0);
+        ensureEffect(player, MobEffects.WATER_BREATHING, 310, 0);
+    }
+
+    private static void ensureEffect(net.minecraft.world.entity.LivingEntity entity, net.minecraft.world.effect.MobEffect effect, int durationTicks, int amplifier) {
+        var current = entity.getEffect(effect);
+
+        if (current != null && current.getDuration() > 300) return;
+
+        entity.addEffect(new MobEffectInstance(effect, durationTicks, amplifier, true, false, false));
     }
 }
