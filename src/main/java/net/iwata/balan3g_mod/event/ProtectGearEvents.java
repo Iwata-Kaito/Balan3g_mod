@@ -5,7 +5,6 @@ import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.iwata.balan3g_mod.item.custom.Protect_GearItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

@@ -1,18 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:egg"
-    },
-    {
-      "item": "balan3g_mod:balan"
-    },
-    {
-      "item": "minecraft:wheat"
-    }
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
   ],
+  "key": {
+    "#": {
+      "item": "balan3g_mod:tied_up_balan"
+    }
+  },
   "result": {
-    "item": "balan3g_mod:fried_balan",
-    "count": 1
+    "item": "balan3g_mod:boxed_balan"
   }
 }

@@ -18,6 +18,6 @@ public class Living_BalanModel extends GeoModel<Living_BalanEntity> {
 
     @Override
     public ResourceLocation getAnimationResource(Living_BalanEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "animations/living_balan_animation.json");
+        return new ResourceLocation(Balan3g_mod.MOD_ID, "animations/living_balan.animation.json");
     }
 }

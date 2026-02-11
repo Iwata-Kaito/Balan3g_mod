@@ -18,6 +18,6 @@ public class Living_Boxed_BalanModel extends GeoModel<Living_Boxed_BalanEntity> 
 
     @Override
     public ResourceLocation getAnimationResource(Living_Boxed_BalanEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "animations/living_boxed_balan_animation.json");
+        return new ResourceLocation(Balan3g_mod.MOD_ID, "animations/living_boxed_balan.animation.json");
     }
 }

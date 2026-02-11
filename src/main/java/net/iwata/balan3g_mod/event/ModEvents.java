@@ -18,6 +18,7 @@ public class ModEvents {
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
         event.put(ModEntities.Living_Balan.get(), Living_BalanEntity.setAttributes());
         event.put(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanEntity.setAttributes());
+        event.put(ModEntities.Tokkitai_Valine3g.get(), Living_BalanEntity.setAttributes());
     }
 
     @SubscribeEvent

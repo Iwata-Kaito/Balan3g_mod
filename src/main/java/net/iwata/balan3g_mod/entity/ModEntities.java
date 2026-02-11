@@ -3,6 +3,7 @@ package net.iwata.balan3g_mod.entity;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.entity.custom.Living_BalanEntity;
 import net.iwata.balan3g_mod.entity.custom.Living_Boxed_BalanEntity;
+import net.iwata.balan3g_mod.entity.custom.Tokkitai_Valine3gEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -25,6 +26,12 @@ public class ModEntities {
                     () -> EntityType.Builder.of(Living_Boxed_BalanEntity::new, MobCategory.MONSTER)
                             .sized(0.9f, 0.9f)
                             .build(new ResourceLocation(Balan3g_mod.MOD_ID, "living_boxed_balan").toString()));
+
+    public static final RegistryObject<EntityType<Tokkitai_Valine3gEntity>> Tokkitai_Valine3g =
+            ENTITY_TYPES.register("tokkitai_valine3g",
+                    () -> EntityType.Builder.of(Tokkitai_Valine3gEntity::new, MobCategory.MONSTER)
+                            .sized(0.6f, 1.8f)
+                            .build(new ResourceLocation(Balan3g_mod.MOD_ID, "tokkitai_valine3g").toString()));
 
 
     public static void register(IEventBus eventBus) {

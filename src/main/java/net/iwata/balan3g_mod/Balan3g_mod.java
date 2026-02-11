@@ -5,6 +5,7 @@ import net.iwata.balan3g_mod.block.ModBlocks;
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.entity.client.Living_BalanRenderer;
 import net.iwata.balan3g_mod.entity.client.Living_Boxed_BalanRenderer;
+import net.iwata.balan3g_mod.entity.client.Tokkitai_Valine3gRenderer;
 import net.iwata.balan3g_mod.item.ModCreativeModTabs;
 import net.iwata.balan3g_mod.item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -73,6 +74,7 @@ public class Balan3g_mod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.Living_Balan.get(), Living_BalanRenderer::new);
             EntityRenderers.register(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanRenderer::new);
+            EntityRenderers.register(ModEntities.Tokkitai_Valine3g.get(), Tokkitai_Valine3gRenderer::new);
         }
     }
 }
