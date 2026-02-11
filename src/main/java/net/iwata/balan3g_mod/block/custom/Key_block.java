@@ -7,6 +7,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.iwata.balan3g_mod.entity.ModEntities;
 
+import static net.iwata.balan3g_mod.Balan3g_mod_Config.spawn_count;
+
 public class Key_block extends Block {
 
     public Key_block(Properties pProperties) {
@@ -21,7 +23,7 @@ public class Key_block extends Block {
             double spawnX = pPos.getX() + 0.5;
             double spawnY = pPos.getY();
             double spawnZ = pPos.getZ() + 0.5;
-            long count = Balan3g_mod_Config.SPAWN_COUNT.get();
+            long count = spawn_count;
 
             for (int i = 0; i < count; i++) {
                 var balan = ModEntities.Living_Boxed_Balan.get().create(pLevel);

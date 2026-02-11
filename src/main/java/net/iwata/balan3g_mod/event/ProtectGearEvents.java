@@ -3,6 +3,7 @@ package net.iwata.balan3g_mod.event;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.iwata.balan3g_mod.item.custom.Protect_GearItem;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
@@ -15,13 +16,16 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import static net.iwata.balan3g_mod.Balan3g_mod_Config.Protect_Gear_threshold;
 
 @Mod.EventBusSubscriber(modid = Balan3g_mod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class ProtectGearEvents {
 
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
-        float THRESHOLD = Balan3g_mod_Config.Protect_Gear_THRESHOLD.get();
+        float THRESHOLD = Protect_Gear_threshold;
         LivingEntity living = event.getEntity();
         if (living.level().isClientSide) return;
 
@@ -42,15 +46,13 @@ public final class ProtectGearEvents {
     public static void onEffectApplicable(MobEffectEvent.Applicable event) {
         LivingEntity living = event.getEntity();
         if (living.level().isClientSide) return;
-
         if (!isWearingFullProtectGear(living)) return;
 
         MobEffect effect = event.getEffectInstance().getEffect();
+        ResourceLocation effectId = ForgeRegistries.MOB_EFFECTS.getKey(effect);
 
-        if (effect.getCategory() == MobEffectCategory.HARMFUL) {
-            if (effect == MobEffects.BAD_OMEN || effect == MobEffects.DOLPHINS_GRACE) {
-                return;
-            }
+        // 設定ファイルの許可リストにない場合は拒否
+        if (effectId == null || !Balan3g_mod_Config.ALLOWED_EFFECTS.get().contains(effectId.toString())) {
             event.setResult(MobEffectEvent.Applicable.Result.DENY);
         }
     }
