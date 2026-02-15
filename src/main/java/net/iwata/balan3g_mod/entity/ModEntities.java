@@ -29,7 +29,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<Tokkitai_Valine3gEntity>> Tokkitai_Valine3g =
             ENTITY_TYPES.register("tokkitai_valine3g",
-                    () -> EntityType.Builder.of(Tokkitai_Valine3gEntity::new, MobCategory.MONSTER)
+                    () -> EntityType.Builder.of(Tokkitai_Valine3gEntity::new, MobCategory.CREATURE)
                             .sized(0.6f, 1.8f)
                             .build(new ResourceLocation(Balan3g_mod.MOD_ID, "tokkitai_valine3g").toString()));
 

@@ -1,7 +1,6 @@
 package net.iwata.balan3g_mod.entity.client;
 
 import net.iwata.balan3g_mod.Balan3g_mod;
-import net.iwata.balan3g_mod.entity.custom.Living_Boxed_BalanEntity;
 import net.iwata.balan3g_mod.entity.custom.Tokkitai_Valine3gEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;

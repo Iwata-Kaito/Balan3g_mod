@@ -4,6 +4,7 @@ import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.entity.custom.Living_BalanEntity;
 import net.iwata.balan3g_mod.entity.custom.Living_Boxed_BalanEntity;
+import net.iwata.balan3g_mod.entity.custom.Tokkitai_Valine3gEntity;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -18,7 +19,7 @@ public class ModEvents {
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
         event.put(ModEntities.Living_Balan.get(), Living_BalanEntity.setAttributes());
         event.put(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanEntity.setAttributes());
-        event.put(ModEntities.Tokkitai_Valine3g.get(), Living_BalanEntity.setAttributes());
+        event.put(ModEntities.Tokkitai_Valine3g.get(), Tokkitai_Valine3gEntity.setAttributes());
     }
 
     @SubscribeEvent

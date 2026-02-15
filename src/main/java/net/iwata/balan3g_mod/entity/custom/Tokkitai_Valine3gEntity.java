@@ -1,6 +1,10 @@
 package net.iwata.balan3g_mod.entity.custom;
 
+import net.iwata.balan3g_mod.item.ModItems;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -10,6 +14,7 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -26,10 +31,12 @@ public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
     }
     public static AttributeSupplier setAttributes() {
         return Monster.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 64D)
+                .add(Attributes.JUMP_STRENGTH, 0.6f)
+                .add(Attributes.MAX_HEALTH, 300D)
                 .add(Attributes.ATTACK_DAMAGE, 8.0f)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.6f)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
+
 
     }
 
@@ -61,5 +68,20 @@ public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    @Override
+    protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(random, difficulty);
+
+        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.Protectgear_Helmet.get()));
+        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.Protectgear_Chestplate.get()));
+        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.Protectgear_Leggings.get()));
+        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.Protectgear_Boots.get()));
+
+        this.setDropChance(EquipmentSlot.HEAD, 0.0F);
+        this.setDropChance(EquipmentSlot.CHEST, 0.0F);
+        this.setDropChance(EquipmentSlot.LEGS, 0.0F);
+        this.setDropChance(EquipmentSlot.FEET, 0.0F);
     }
 }
