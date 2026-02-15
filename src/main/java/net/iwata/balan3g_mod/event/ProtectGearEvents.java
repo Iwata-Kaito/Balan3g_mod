@@ -4,6 +4,7 @@ import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.iwata.balan3g_mod.item.custom.Protect_GearItem;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -30,6 +31,16 @@ public final class ProtectGearEvents {
 
         if (!isWearingFullProtectGear(living)) return;
 
+        if (event.getSource() != null && event.getSource().is(DamageTypeTags.BYPASSES_EFFECTS)) {
+            event.setAmount(0.0f);
+            return;
+        }
+        if (event.getSource() != null && event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            event.setAmount(0.0f);
+            return;
+        }
+
+
         float dmg = event.getAmount();
         if (dmg <= 0.0f) return;
 
@@ -47,7 +58,16 @@ public final class ProtectGearEvents {
         if (living.level().isClientSide) return;
         if (!isWearingFullProtectGear(living)) return;
 
-        MobEffect effect = event.getEffectInstance().getEffect();
+        MobEffectInstance instance = event.getEffectInstance();
+        MobEffect effect = instance.getEffect();
+
+        // 即時効果（負傷/治癒など）のうち「有害なもの」は常に無効化
+        // 例: MobEffects.HARM など
+        if (effect.isInstantenous() && !effect.isBeneficial()) {
+            event.setResult(MobEffectEvent.Applicable.Result.DENY);
+            return;
+        }
+
         ResourceLocation effectId = ForgeRegistries.MOB_EFFECTS.getKey(effect);
 
         // 設定ファイルの許可リストにない場合は拒否

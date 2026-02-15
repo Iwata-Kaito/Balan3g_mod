@@ -14,7 +14,6 @@ import software.bernie.geckolib.renderer.layer.ItemArmorGeoLayer;
 public class Tokkitai_Valine3gRenderer extends GeoEntityRenderer<Tokkitai_Valine3gEntity> {
     public Tokkitai_Valine3gRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new Tokkitai_Valine3gModel());
-        this.addRenderLayer(new AutoGlowingGeoLayer<>(this));
         this.shadowRadius = 0.4f;
     }
 

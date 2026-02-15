@@ -24,6 +24,7 @@ public class Balan3g_mod_Config
             .defineInRange("Protect_Gear_threshold", 10, 0, Long.MAX_VALUE);
 
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ALLOWED_EFFECTS = BUILDER
+            .comment("")
             .comment("Effects not blocked by Protect Gear")
             .defineListAllowEmpty(
                     "protect_gear_allowed_effects",
