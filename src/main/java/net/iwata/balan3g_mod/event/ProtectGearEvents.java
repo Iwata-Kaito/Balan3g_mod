@@ -2,6 +2,7 @@ package net.iwata.balan3g_mod.event;
 
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.Balan3g_mod_Config;
+import net.iwata.balan3g_mod.item.ModItems;
 import net.iwata.balan3g_mod.item.custom.Protect_GearItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
@@ -23,6 +24,8 @@ import static net.iwata.balan3g_mod.Balan3g_mod_Config.Protect_Gear_threshold;
 @Mod.EventBusSubscriber(modid = Balan3g_mod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class ProtectGearEvents {
 
+
+    //ダメージ無効化、軽減
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         float THRESHOLD = Protect_Gear_threshold;
@@ -52,6 +55,7 @@ public final class ProtectGearEvents {
         event.setAmount(Math.max(0.0f, (float) Math.floor(dmg / 2.0)));
     }
 
+    //Effectを防ぐ
     @SubscribeEvent
     public static void onEffectApplicable(MobEffectEvent.Applicable event) {
         LivingEntity living = event.getEntity();
@@ -61,21 +65,19 @@ public final class ProtectGearEvents {
         MobEffectInstance instance = event.getEffectInstance();
         MobEffect effect = instance.getEffect();
 
-        // 即時効果（負傷/治癒など）のうち「有害なもの」は常に無効化
-        // 例: MobEffects.HARM など
-        if (effect.isInstantenous() && !effect.isBeneficial()) {
+        if (effect.isInstantenous()) {
             event.setResult(MobEffectEvent.Applicable.Result.DENY);
             return;
         }
 
         ResourceLocation effectId = ForgeRegistries.MOB_EFFECTS.getKey(effect);
 
-        // 設定ファイルの許可リストにない場合は拒否
         if (effectId == null || !Balan3g_mod_Config.ALLOWED_EFFECTS.get().contains(effectId.toString())) {
             event.setResult(MobEffectEvent.Applicable.Result.DENY);
         }
     }
 
+    //フル装備か確認
     private static boolean isWearingFullProtectGear(LivingEntity living) {
         return isProtectGear(living.getItemBySlot(EquipmentSlot.HEAD))
                 && isProtectGear(living.getItemBySlot(EquipmentSlot.CHEST))
@@ -84,9 +86,10 @@ public final class ProtectGearEvents {
     }
 
     private static boolean isProtectGear(ItemStack stack) {
-        return !stack.isEmpty() && stack.getItem() instanceof Protect_GearItem;
+        return !stack.isEmpty() && stack.is(ModItems.Protectgear_Helmet.get()) || stack.is(ModItems.Protectgear_Chestplate.get()) || stack.is(ModItems.Protectgear_Leggings.get()) || stack.is(ModItems.Protectgear_Boots.get());
     }
 
+    //暗視、耐火、水中呼吸を付与
     @SubscribeEvent
     public static void onPlayerTickGiveBuffs(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;

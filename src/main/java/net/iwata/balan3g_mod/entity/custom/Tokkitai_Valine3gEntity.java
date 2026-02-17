@@ -1,10 +1,15 @@
 package net.iwata.balan3g_mod.entity.custom;
 
 import net.iwata.balan3g_mod.item.ModItems;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -16,12 +21,14 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
+import javax.annotation.Nullable;
 
 public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
@@ -35,6 +42,7 @@ public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
                 .add(Attributes.MAX_HEALTH, 300D)
                 .add(Attributes.ATTACK_DAMAGE, 8.0f)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0f)
+                .add(Attributes.FOLLOW_RANGE, 200.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
 
 
@@ -70,9 +78,10 @@ public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
         return cache;
     }
 
+    @Nullable
     @Override
-    protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
-        super.populateDefaultEquipmentSlots(random, difficulty);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+        super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
 
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.Protectgear_Helmet.get()));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.Protectgear_Chestplate.get()));
@@ -83,5 +92,10 @@ public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
         this.setDropChance(EquipmentSlot.CHEST, 0.0F);
         this.setDropChance(EquipmentSlot.LEGS, 0.0F);
         this.setDropChance(EquipmentSlot.FEET, 0.0F);
+
+        this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, -1, 0, false, false));
+        this.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, -1, 0, false, false));
+
+        return pSpawnData;
     }
 }
