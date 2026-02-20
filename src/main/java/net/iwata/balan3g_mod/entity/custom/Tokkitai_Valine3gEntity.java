@@ -1,23 +1,18 @@
 package net.iwata.balan3g_mod.entity.custom;
 
+import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.RandomSource;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -27,17 +22,21 @@ import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import javax.annotation.Nullable;
 
-public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
+public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
-    public Tokkitai_Valine3gEntity(EntityType<? extends Tokkitai_Valine3gEntity> entityType, Level level) {
+    public Tokkitai_Valine3gEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
+        this.setMaxUpStep(2.0f);
+        this.setPersistenceRequired();
     }
+
     public static AttributeSupplier setAttributes() {
-        return Monster.createMobAttributes()
+        return Animal.createMobAttributes()
                 .add(Attributes.JUMP_STRENGTH, 0.6f)
                 .add(Attributes.MAX_HEALTH, 300D)
                 .add(Attributes.ATTACK_DAMAGE, 8.0f)
@@ -54,8 +53,15 @@ public class Tokkitai_Valine3gEntity extends Monster implements GeoEntity {
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 64.0F));
 
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    }
+
+    @Nullable
+    @Override
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
+        return ModEntities.Tokkitai_Valine3g.get().create(level);
     }
 
     @Override

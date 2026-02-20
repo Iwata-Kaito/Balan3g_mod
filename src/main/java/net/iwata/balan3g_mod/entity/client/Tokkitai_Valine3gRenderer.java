@@ -16,7 +16,7 @@ public class Tokkitai_Valine3gRenderer extends GeoEntityRenderer<Tokkitai_Valine
         super(renderManager, new Tokkitai_Valine3gModel());
         this.shadowRadius = 0.4f;
 
-        addRenderLayer(new ItemArmorGeoLayer<>(this));
+        addRenderLayer(new AutoGlowingGeoLayer<>(this));
     }
 
     @Override
