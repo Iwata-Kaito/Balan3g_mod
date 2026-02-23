@@ -28,6 +28,7 @@ public class ModCreativeModTabs {
 
                         pOutput.accept(ModBlocks.Crate_of_Balan.get());
                         pOutput.accept(ModBlocks.Key_block.get());
+                        pOutput.accept(ModItems.Corpses_of_Tokkitai_Item.get());
 
                         pOutput.accept(ModItems.Fried_Balan.get());
 

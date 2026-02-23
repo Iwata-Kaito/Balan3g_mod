@@ -2,12 +2,15 @@ package net.iwata.balan3g_mod;
 
 import com.mojang.logging.LogUtils;
 import net.iwata.balan3g_mod.block.ModBlocks;
+import net.iwata.balan3g_mod.block.entity.ModBlockEntities;
+import net.iwata.balan3g_mod.block.entity.client.Corpses_of_TokkitaiRenderer;
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.entity.client.Living_BalanRenderer;
 import net.iwata.balan3g_mod.entity.client.Living_Boxed_BalanRenderer;
 import net.iwata.balan3g_mod.entity.client.Tokkitai_Valine3gRenderer;
 import net.iwata.balan3g_mod.item.ModCreativeModTabs;
 import net.iwata.balan3g_mod.item.ModItems;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -39,6 +42,7 @@ public class Balan3g_mod {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -75,6 +79,7 @@ public class Balan3g_mod {
             EntityRenderers.register(ModEntities.Living_Balan.get(), Living_BalanRenderer::new);
             EntityRenderers.register(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanRenderer::new);
             EntityRenderers.register(ModEntities.Tokkitai_Valine3g.get(), Tokkitai_Valine3gRenderer::new);
+            BlockEntityRenderers.register(ModBlockEntities.Corpses_of_Tokkitai.get(), Corpses_of_TokkitaiRenderer::new);
         }
     }
 }

@@ -1,6 +1,7 @@
 package net.iwata.balan3g_mod.block;
 
 import net.iwata.balan3g_mod.Balan3g_mod;
+import net.iwata.balan3g_mod.block.custom.Corpses_of_Tokkitai;
 import net.iwata.balan3g_mod.block.custom.Key_block;
 import net.iwata.balan3g_mod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -24,6 +25,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> Key_block = registerBlock("key_block",
             () -> new Key_block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+
+    public static final RegistryObject<Block> Corpses_of_Tokkitai = BLOCKS.register("corpses_of_tokkitai",
+            () -> new Corpses_of_Tokkitai(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
