@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "balan3g_mod:item/corpses_of_tokkitai_item"
+  }
+}

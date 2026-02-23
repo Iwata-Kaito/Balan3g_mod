@@ -26,7 +26,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> Key_block = registerBlock("key_block",
             () -> new Key_block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
-    public static final RegistryObject<Block> Corpses_of_Tokkitai = BLOCKS.register("corpses_of_tokkitai",
+    public static final RegistryObject<Block> Corpses_of_Tokkitai = registerBlock("corpses_of_tokkitai",
             () -> new Corpses_of_Tokkitai(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

@@ -3,9 +3,7 @@ package net.iwata.balan3g_mod.item;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.block.ModBlocks;
 import net.iwata.balan3g_mod.entity.ModEntities;
-import net.iwata.balan3g_mod.item.custom.Corpses_of_TokkitaiItem;
 import net.iwata.balan3g_mod.item.custom.Protect_GearItem;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,8 +31,6 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntities.Living_Boxed_Balan, 0xffffff, 0x0a6408, new Item.Properties()));
     public static final RegistryObject<Item> Fried_Balan = ITEMS.register("fried_balan",
             () -> new Item(new Item.Properties().food(ModFoods.FRIED_BALAN)));
-    public static final RegistryObject<Item> Corpses_of_Tokkitai_Item = ITEMS.register("corpses_of_tokkitai",
-            () -> new Corpses_of_TokkitaiItem(ModBlocks.Corpses_of_Tokkitai.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> Protectgear_Helmet = ITEMS.register("protect_gear_helmet",
             () -> new Protect_GearItem(ModArmorMaterials.Protect_Gear, Protect_GearItem.Type.HELMET, new Item.Properties()));

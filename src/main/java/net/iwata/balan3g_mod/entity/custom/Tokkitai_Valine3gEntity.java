@@ -2,12 +2,15 @@ package net.iwata.balan3g_mod.entity.custom;
 
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.item.ModItems;
+import net.iwata.balan3g_mod.block.ModBlocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -27,10 +30,13 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
+
 import javax.annotation.Nullable;
 
 public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+
+    private boolean corpsePlaced = false;
 
     //設定
     public Tokkitai_Valine3gEntity(EntityType<? extends Animal> entityType, Level level) {
@@ -110,6 +116,19 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    @Override
+    public void die(DamageSource damageSource) {
+        super.die(damageSource);
+
+        if (corpsePlaced) return;
+        corpsePlaced = true;
+
+        if (!(this.level() instanceof ServerLevel serverLevel)) return;
+
+        BlockPos placePos = this.blockPosition();
+        serverLevel.setBlock(placePos, ModBlocks.Corpses_of_Tokkitai.get().defaultBlockState(), 3);
     }
 
     //armor,effect付与
