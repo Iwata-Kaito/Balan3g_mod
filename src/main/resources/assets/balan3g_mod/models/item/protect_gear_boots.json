@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "balan3g_mod:item/protect_gear_item"
+    "layer0": "balan3g_mod:item/protect_gear_item",
+    "layer1": "balan3g_mod:item/b"
   }
 }

@@ -57,6 +57,8 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
 
 
     }
+    
+    
 
     //BossBar
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.RED, ServerBossEvent.BossBarOverlay.PROGRESS);
@@ -118,19 +120,6 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
         return cache;
     }
 
-    @Override
-    public void die(DamageSource damageSource) {
-        super.die(damageSource);
-
-        if (corpsePlaced) return;
-        corpsePlaced = true;
-
-        if (!(this.level() instanceof ServerLevel serverLevel)) return;
-
-        BlockPos placePos = this.blockPosition();
-        serverLevel.setBlock(placePos, ModBlocks.Corpses_of_Tokkitai.get().defaultBlockState(), 3);
-    }
-
     //armor,effect付与
     @Nullable
     @Override
@@ -151,5 +140,19 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
         this.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, -1, 0, false, false));
 
         return pSpawnData;
+    }
+
+    //死亡時にブロック生成
+    @Override
+    public void die(DamageSource damageSource) {
+        super.die(damageSource);
+
+        if (corpsePlaced) return;
+        corpsePlaced = true;
+
+        if (!(this.level() instanceof ServerLevel serverLevel)) return;
+
+        BlockPos placePos = this.blockPosition();
+        serverLevel.setBlock(placePos, ModBlocks.Corpses_of_Tokkitai.get().defaultBlockState(), 3);
     }
 }
