@@ -8,16 +8,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class Tokkitai_Valine3gModel extends GeoModel<Tokkitai_Valine3gEntity> {
     @Override
     public ResourceLocation getModelResource(Tokkitai_Valine3gEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "geo/tokkitai_valine3g.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "geo/tokkitai_valine3g.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Tokkitai_Valine3gEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "textures/entity/tokkitai_valine3g.png");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "textures/entity/tokkitai_valine3g.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Tokkitai_Valine3gEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "animations/tokkitai_valine3g.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "animations/tokkitai_valine3g.animation.json");
     }
 }

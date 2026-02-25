@@ -14,6 +14,6 @@ public class Living_BalanRenderer extends GeoEntityRenderer<Living_BalanEntity> 
 
     @Override
     public ResourceLocation getTextureLocation(Living_BalanEntity animatable){
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "textures/entity/living_balan.png");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "textures/entity/living_balan.png");
     }
 }

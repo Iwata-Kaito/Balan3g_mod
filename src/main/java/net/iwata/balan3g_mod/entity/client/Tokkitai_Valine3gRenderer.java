@@ -21,6 +21,6 @@ public class Tokkitai_Valine3gRenderer extends GeoEntityRenderer<Tokkitai_Valine
 
     @Override
     public ResourceLocation getTextureLocation(Tokkitai_Valine3gEntity animatable){
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "textures/entity/tokkitai_valine3g.png");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "textures/entity/tokkitai_valine3g.png");
     }
 }

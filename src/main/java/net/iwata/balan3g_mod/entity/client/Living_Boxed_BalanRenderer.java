@@ -14,6 +14,6 @@ public class Living_Boxed_BalanRenderer extends GeoEntityRenderer<Living_Boxed_B
 
     @Override
     public ResourceLocation getTextureLocation(Living_Boxed_BalanEntity animatable){
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "textures/entity/living_boxed_balan.png");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "textures/entity/living_boxed_balan.png");
     }
 }

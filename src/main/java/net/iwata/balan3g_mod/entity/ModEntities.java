@@ -19,19 +19,19 @@ public class ModEntities {
             ENTITY_TYPES.register("living_balan",
                     () -> EntityType.Builder.of(Living_BalanEntity::new, MobCategory.MONSTER)
                             .sized(0.7f, 0.9f)
-                            .build(new ResourceLocation(Balan3g_mod.MOD_ID, "living_balan").toString()));
+                            .build(ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "living_balan").toString()));
 
     public static final RegistryObject<EntityType<Living_Boxed_BalanEntity>> Living_Boxed_Balan =
             ENTITY_TYPES.register("living_boxed_balan",
                     () -> EntityType.Builder.of(Living_Boxed_BalanEntity::new, MobCategory.MONSTER)
                             .sized(0.9f, 0.9f)
-                            .build(new ResourceLocation(Balan3g_mod.MOD_ID, "living_boxed_balan").toString()));
+                            .build(ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "living_boxed_balan").toString()));
 
     public static final RegistryObject<EntityType<Tokkitai_Valine3gEntity>> Tokkitai_Valine3g =
             ENTITY_TYPES.register("tokkitai_valine3g",
                     () -> EntityType.Builder.of(Tokkitai_Valine3gEntity::new, MobCategory.CREATURE)
                             .sized(0.6f, 1.8f)
-                            .build(new ResourceLocation(Balan3g_mod.MOD_ID, "tokkitai_valine3g").toString()));
+                            .build(ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "tokkitai_valine3g").toString()));
 
 
     public static void register(IEventBus eventBus) {

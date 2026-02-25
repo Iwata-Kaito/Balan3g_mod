@@ -8,16 +8,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class Living_BalanModel extends GeoModel<Living_BalanEntity> {
     @Override
     public ResourceLocation getModelResource(Living_BalanEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "geo/living_balan.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "geo/living_balan.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Living_BalanEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "textures/entity/living_balan.png");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "textures/entity/living_balan.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Living_BalanEntity animatable) {
-        return new ResourceLocation(Balan3g_mod.MOD_ID, "animations/living_balan.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "animations/living_balan.animation.json");
     }
 }
