@@ -1,10 +1,14 @@
 package net.iwata.balan3g_mod.block.custom;
 
+import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.MobSpawnType;
@@ -28,32 +32,30 @@ public class Key_block extends Block {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack mainHand = player.getMainHandItem();
+        if (hand != InteractionHand.MAIN_HAND || !mainHand.is(ModItems.Balan_Key.get())) return InteractionResult.PASS;
+        if (!(level instanceof ServerLevel serverLevel)) return InteractionResult.SUCCESS; // クライアントでスイングアニメ
 
-        if (hand != InteractionHand.MAIN_HAND) {
-            return InteractionResult.PASS;
-        }
+        // ブロック変更
+        serverLevel.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+        serverLevel.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+        serverLevel.setBlock(pos.below(), Blocks.WHITE_CONCRETE.defaultBlockState(), Block.UPDATE_ALL);
 
-        if (!mainHand.is(ModItems.Balan_Key.get())) {
-            return InteractionResult.PASS;
-        }
-
-        if (!(level instanceof ServerLevel serverLevel)) {
-            return InteractionResult.SUCCESS;
-        }
-
-        // ブロック設置/置換
-        serverLevel.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-        serverLevel.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 3);
-        serverLevel.setBlock(pos.below(), Blocks.WHITE_CONCRETE.defaultBlockState(), 3);
-
+        // エンティティ召喚
         var entity = ModEntities.Tokkitai_Valine3g.get().create(serverLevel);
-        if (entity != null) {
-            entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, serverLevel.getRandom().nextFloat() * 360.0F, 0.0F);
-            entity.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(pos), MobSpawnType.TRIGGERED, null, null);
-            serverLevel.addFreshEntity(entity);
+        if (entity == null) {
+            Balan3g_mod.LOGGER.warn("Failed to create entity at {}", pos);
+            return InteractionResult.FAIL;
         }
+        entity.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, serverLevel.getRandom().nextFloat() * 360.0F, 0.0F);
+        entity.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(pos), MobSpawnType.TRIGGERED, null, null);
+        serverLevel.addFreshEntity(entity);
 
-        mainHand.shrink(1);
+        //音&エフェクト
+        serverLevel.playSound(null, pos, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 1.0F, 1.0F);
+        serverLevel.sendParticles(ParticleTypes.PORTAL, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 20, 0.5, 0.5, 0.5, 0.1);
+
+        // アイテム消費 (Creative除く)
+        if (!player.isCreative()) mainHand.shrink(1);
 
         return InteractionResult.CONSUME;
     }
