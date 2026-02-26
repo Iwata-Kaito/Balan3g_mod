@@ -7,6 +7,7 @@ import net.iwata.balan3g_mod.block.entity.client.Corpses_of_TokkitaiRenderer;
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.entity.client.Living_BalanRenderer;
 import net.iwata.balan3g_mod.entity.client.Living_Boxed_BalanRenderer;
+import net.iwata.balan3g_mod.entity.client.Mauser_AmmoRenderer;
 import net.iwata.balan3g_mod.entity.client.Tokkitai_Valine3gRenderer;
 import net.iwata.balan3g_mod.item.ModCreativeModTabs;
 import net.iwata.balan3g_mod.item.ModItems;
@@ -79,6 +80,7 @@ public class Balan3g_mod {
             EntityRenderers.register(ModEntities.Living_Balan.get(), Living_BalanRenderer::new);
             EntityRenderers.register(ModEntities.Living_Boxed_Balan.get(), Living_Boxed_BalanRenderer::new);
             EntityRenderers.register(ModEntities.Tokkitai_Valine3g.get(), Tokkitai_Valine3gRenderer::new);
+            EntityRenderers.register(ModEntities.Mauser_Ammo.get(), Mauser_AmmoRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.Corpses_of_Tokkitai.get(), Corpses_of_TokkitaiRenderer::new);
         }
     }

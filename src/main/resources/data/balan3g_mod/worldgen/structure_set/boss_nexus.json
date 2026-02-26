@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "balan3g_mod:boss_nexus",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1642136474,
+
+    "spacing": 40,
+
+    "separation": 16,
+
+    "type": "minecraft:random_spread"
+  }
+}

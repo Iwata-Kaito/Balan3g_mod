@@ -3,6 +3,7 @@ package net.iwata.balan3g_mod.entity;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.entity.custom.Living_BalanEntity;
 import net.iwata.balan3g_mod.entity.custom.Living_Boxed_BalanEntity;
+import net.iwata.balan3g_mod.entity.custom.Mauser_AmmoEntity;
 import net.iwata.balan3g_mod.entity.custom.Tokkitai_Valine3gEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -32,6 +33,11 @@ public class ModEntities {
                     () -> EntityType.Builder.of(Tokkitai_Valine3gEntity::new, MobCategory.CREATURE)
                             .sized(0.6f, 1.8f)
                             .build(ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "tokkitai_valine3g").toString()));
+
+    public static final RegistryObject<EntityType<Mauser_AmmoEntity>> Mauser_Ammo =
+            ENTITY_TYPES.register("mauser_ammo",
+                    () -> EntityType.Builder.<Mauser_AmmoEntity>of(Mauser_AmmoEntity::new, MobCategory.MISC)
+                            .build(ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "mauser_ammo").toString()));
 
 
     public static void register(IEventBus eventBus) {

@@ -3,7 +3,6 @@ package net.iwata.balan3g_mod.event;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.iwata.balan3g_mod.item.ModItems;
-import net.iwata.balan3g_mod.item.custom.Protect_GearItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffect;
@@ -52,7 +51,7 @@ public final class ProtectGearEvents {
             return;
         }
 
-        event.setAmount(Math.max(0.0f, (float) Math.floor(dmg / 2.0)));
+        event.setAmount(Math.max(0.0f, (float) Math.floor((dmg-THRESHOLD) / 2.0)));
     }
 
     //Effectを防ぐ
