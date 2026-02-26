@@ -3,6 +3,7 @@ package net.iwata.balan3g_mod.item;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.block.ModBlocks;
 import net.iwata.balan3g_mod.entity.ModEntities;
+import net.iwata.balan3g_mod.item.custom.Mauser_AmmoShooterItem;
 import net.iwata.balan3g_mod.item.custom.Protect_GearItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -40,6 +41,8 @@ public class ModItems {
             () -> new Protect_GearItem(ModArmorMaterials.Protect_Gear, Protect_GearItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> Protectgear_Boots = ITEMS.register("protect_gear_boots",
             () -> new Protect_GearItem(ModArmorMaterials.Protect_Gear, Protect_GearItem.Type.BOOTS, new Item.Properties()));
+    public static final RegistryObject<Item> MAUSER_AMMO_SHOOTER = ITEMS.register("mauser_ammo_shooter",
+            () -> new Mauser_AmmoShooterItem(new Item.Properties().stacksTo(1), 1.8, 0));
 
 
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}
