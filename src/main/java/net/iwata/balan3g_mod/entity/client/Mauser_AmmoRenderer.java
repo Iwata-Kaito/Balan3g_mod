@@ -9,7 +9,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class Mauser_AmmoRenderer extends GeoEntityRenderer<Mauser_AmmoEntity> {
     public Mauser_AmmoRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new Mauser_AmmoModel());
-        this.shadowRadius = 0.1f;
+        this.shadowRadius = 0.0f;
     }
 
     @Override

@@ -2,12 +2,9 @@ package net.iwata.balan3g_mod.entity.custom;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-
-import net.minecraft.util.Mth;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
@@ -41,7 +38,7 @@ public class Mauser_AmmoEntity extends ThrowableProjectile implements GeoEntity,
     public void tick() {
         this.setNoGravity(true);
 
-        HitResult hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
+        var hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
         if (hitResult.getType() != HitResult.Type.MISS) {
             this.onHit(hitResult);
         }
@@ -63,8 +60,8 @@ public class Mauser_AmmoEntity extends ThrowableProjectile implements GeoEntity,
         if (!this.level().isClientSide && entity != shooter && entity instanceof LivingEntity living) {
             double r = this.level().random.nextDouble(); // [0.0, 1.0)
 
-            if (r < 0.70) {
-                living.hurt(this.damageSources().thrown(this, shooter), DAMAGE);
+            if (r < 0.80) {
+                living.hurt(this.damageSources().thrown(this, shooter), DAMAGE*2);
             } else if (r < 0.999) {
                 living.setHealth(living.getHealth() - DAMAGE);
             } else {

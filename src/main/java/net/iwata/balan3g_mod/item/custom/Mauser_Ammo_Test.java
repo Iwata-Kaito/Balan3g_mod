@@ -10,11 +10,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public class Mauser_AmmoShooterItem extends Item {
+public class Mauser_Ammo_Test extends Item {
     private final double speed;
     private final int cooldownTicks;
 
-    public Mauser_AmmoShooterItem(Properties properties, double speed, int cooldownTicks) {
+    public Mauser_Ammo_Test(Properties properties, double speed, int cooldownTicks) {
         super(properties);
         this.speed = speed;
         this.cooldownTicks = cooldownTicks;
@@ -30,7 +30,7 @@ public class Mauser_AmmoShooterItem extends Item {
             Vec3 look = player.getLookAngle();
             ammo.setOwner(player);
 
-            ammo.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
+            ammo.setPos(player.getX(), player.getEyeY() - 0.2, player.getZ());
 
             ammo.setDeltaMovement(look.scale(this.speed));
 

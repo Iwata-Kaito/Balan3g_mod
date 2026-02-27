@@ -61,8 +61,8 @@ public class Balan3g_mod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
-            event.accept(ModItems.Balan);
+        if(event.getTabKey() == CreativeModeTabs.OP_BLOCKS){
+            event.accept(ModItems.MAUSER_AMMO_TEST);
         }
     }
 

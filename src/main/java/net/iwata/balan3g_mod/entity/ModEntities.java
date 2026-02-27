@@ -37,6 +37,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Mauser_AmmoEntity>> Mauser_Ammo =
             ENTITY_TYPES.register("mauser_ammo",
                     () -> EntityType.Builder.<Mauser_AmmoEntity>of(Mauser_AmmoEntity::new, MobCategory.MISC)
+                            .sized(0.5f, 0.5f)
                             .build(ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "mauser_ammo").toString()));
 
 
