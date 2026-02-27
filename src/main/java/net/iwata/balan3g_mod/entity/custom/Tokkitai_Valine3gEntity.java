@@ -40,10 +40,10 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
 
     private boolean corpsePlaced = false;
 
-    // --- 射撃設定（毎分800発） ---
-    private static final double FIRE_RPM = 800.0;
-    private static final double SHOTS_PER_TICK = FIRE_RPM / 60.0 / 20.0; // 0.666...
+    //銃撃設定
+    private static final double FIRE_RPM = 800.0; //1分間に発射する数
     private static final double BULLET_SPEED = 2.8; //弾速
+    private static final double SHOTS_PER_TICK = FIRE_RPM / 1200;
     private double fireAccumulator = 0.0;
 
     //設定
@@ -89,13 +89,10 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     @Override
     protected void registerGoals() {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 
-        this.goalSelector.addGoal(1, new FloatGoal(this));
-
-        // 射撃（優先度は適宜調整。移動より優先させたいなら数字を小さく）
-        this.goalSelector.addGoal(2, new FeuerGoal());
-
+        this.goalSelector.addGoal(2, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new FeuerGoal());
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 64.0F));
@@ -189,7 +186,7 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
 
             Tokkitai_Valine3gEntity.this.getLookControl().setLookAt(target, 30.0F, 30.0F);
 
-            // 800RPMをtickに落とし込む（平均13.33発/秒）
+            //任意のRPMをtickに落とし込む
             fireAccumulator += SHOTS_PER_TICK;
 
             while (fireAccumulator >= 1.0) {

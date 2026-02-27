@@ -38,15 +38,7 @@ public class Mauser_AmmoEntity extends ThrowableProjectile implements GeoEntity,
     public void tick() {
         this.setNoGravity(true);
 
-        var hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-        if (hitResult.getType() != HitResult.Type.MISS) {
-            this.onHit(hitResult);
-        }
-
         super.tick();
-
-        var vel = this.getDeltaMovement();
-        this.setPos(this.getX() + vel.x(), this.getY() + vel.y(), this.getZ() + vel.z());
 
         if (this.lifeTicks++ >= MAX_LIFE_TICKS) {
             this.discard();
@@ -60,7 +52,7 @@ public class Mauser_AmmoEntity extends ThrowableProjectile implements GeoEntity,
         if (!this.level().isClientSide && entity != shooter && entity instanceof LivingEntity living) {
             double r = this.level().random.nextDouble(); // [0.0, 1.0)
 
-            if (r < 0.80) {
+            if (r < 0.90) {
                 living.hurt(this.damageSources().thrown(this, shooter), DAMAGE*2);
             } else if (r < 0.999) {
                 living.setHealth(living.getHealth() - DAMAGE);

@@ -48,6 +48,7 @@ public final class ProtectGearEvents {
 
         if (dmg <= THRESHOLD) {
             event.setAmount(0.0f);
+
             return;
         }
 
