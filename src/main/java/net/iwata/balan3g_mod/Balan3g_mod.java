@@ -20,6 +20,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -47,7 +48,7 @@ public class Balan3g_mod {
 
         modEventBus.addListener(this::commonSetup);
 
-        FMLJavaModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Balan3g_mod_Config.SPEC, "Balan3g_mod_Config.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Balan3g_mod_Config.SPEC, "Balan3g_mod_Config.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
