@@ -1,0 +1,25 @@
+{
+  "item.balan3g_mod.balan": "バラン",
+  "item.balan3g_mod.tied_up_balan": "縛ったバラン",
+  "item.balan3g_mod.boxed_balan": "箱詰めされたバラン",
+  "item.balan3g_mod.broken_balan_key": "壊れたバランキー",
+  "item.balan3g_mod.balan_key": "バランキー",
+  "item.balan3g_mod.living_balan_spawn_egg": "生きているバランのスポーンエッグ",
+  "item.balan3g_mod.living_boxed_balan_spawn_egg": "生きている箱詰めされたバランのスポーンエッグ",
+  "item.balan3g_mod.fried_balan": "バランの天ぷら",
+  "item.balan3g_mod.mauser_ammo_test": "Mauser Ammoのテスト",
+  "block.balan3g_mod.crate_of_balan": "木箱入りのバラン",
+  "block.balan3g_mod.key_block" : "キーブロック",
+  "block.balan3g_mod.corpses_of_tokkitai" : "特機隊隊員の死体",
+
+  "item.balan3g_mod.protect_gear_helmet" : "プロテクトギアのヘルメット",
+  "item.balan3g_mod.protect_gear_chestplate" : "プロテクトギアのチェストプレート",
+  "item.balan3g_mod.protect_gear_leggings" : "プロテクトギアのレギンス",
+  "item.balan3g_mod.protect_gear_boots" : "プロテクトギアのブーツ",
+
+  "creativetab.balan3g_mod_tab": "Balan3g Mod",
+
+  "entity.balan3g_mod.living_balan": "生きているバラン",
+  "entity.balan3g_mod.living_boxed_balan": "生きている箱詰めされたバラン",
+  "entity.balan3g_mod.tokkitai_valine3g": "特機隊隊員 バリン3g"
+}
