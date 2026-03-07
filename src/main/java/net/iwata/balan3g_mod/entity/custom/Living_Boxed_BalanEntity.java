@@ -23,11 +23,12 @@ public class Living_Boxed_BalanEntity extends Monster implements GeoEntity {
 
     public Living_Boxed_BalanEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
+        this.setPersistenceRequired();
     }
     public static AttributeSupplier setAttributes() {
         return Monster.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 64D)
-                .add(Attributes.ATTACK_DAMAGE, 8.0f)
+                .add(Attributes.ATTACK_DAMAGE, 6.0f)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.6f)
                 .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
 
