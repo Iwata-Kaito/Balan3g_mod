@@ -1,5 +1,6 @@
 package net.iwata.balan3g_mod.entity.custom;
 
+import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.iwata.balan3g_mod.entity.ModEntities;
 import net.iwata.balan3g_mod.item.ModItems;
 import net.iwata.balan3g_mod.block.ModBlocks;
@@ -14,6 +15,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -41,9 +43,6 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     private boolean corpsePlaced = false;
 
     //銃撃設定
-    private static final double FIRE_RPM = 800.0; //1分間に発射する数
-    private static final double BULLET_SPEED = 2.8; //弾速
-    private static final double SHOTS_PER_TICK = FIRE_RPM / 1200;
     private double fireAccumulator = 0.0;
 
     //設定
@@ -57,7 +56,7 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     public static AttributeSupplier setAttributes() {
         return Animal.createMobAttributes()
                 .add(Attributes.JUMP_STRENGTH, 0.6f)
-                .add(Attributes.MAX_HEALTH, 300D)
+                .add(Attributes.MAX_HEALTH, 300.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.0f)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0f)
                 .add(Attributes.FOLLOW_RANGE, 200.0f)
@@ -131,6 +130,12 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
         super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
 
+        AttributeInstance maxHealthAttribute = this.getAttribute(Attributes.MAX_HEALTH);
+        if (maxHealthAttribute != null) {
+            maxHealthAttribute.setBaseValue(Balan3g_mod_Config.MAX_HEALTH);
+            this.setHealth(this.getMaxHealth());
+        }
+
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.Protectgear_Helmet.get()));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.Protectgear_Chestplate.get()));
         this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.Protectgear_Leggings.get()));
@@ -186,8 +191,8 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
 
             Tokkitai_Valine3gEntity.this.getLookControl().setLookAt(target, 30.0F, 30.0F);
 
-            //任意のRPMをtickに落とし込む
-            fireAccumulator += SHOTS_PER_TICK;
+            double shotsPerTick = Balan3g_mod_Config.FIRE_RPM / 1200.0D;
+            fireAccumulator += shotsPerTick;
 
             while (fireAccumulator >= 1.0) {
                 fireAccumulator -= 1.0;
@@ -196,10 +201,7 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
         }
 
         private void shootOnce(LivingEntity target) {
-            //発射位置
             Vec3 from = Tokkitai_Valine3gEntity.this.position().add(0.0, Tokkitai_Valine3gEntity.this.getEyeHeight(), 0.0);
-
-            // 狙う位置
             Vec3 to = target.position().add(0.0, target.getBbHeight() * 0.5, 0.0);
 
             Vec3 dir = to.subtract(from);
@@ -209,7 +211,7 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
             Mauser_AmmoEntity ammo = new Mauser_AmmoEntity(ModEntities.Mauser_Ammo.get(), Tokkitai_Valine3gEntity.this.level(), Tokkitai_Valine3gEntity.this);
             ammo.setOwner(Tokkitai_Valine3gEntity.this);
             ammo.setPos(from.x, from.y, from.z);
-            ammo.setDeltaMovement(dir.scale(BULLET_SPEED));
+            ammo.setDeltaMovement(dir.scale(Balan3g_mod_Config.BULLET_SPEED));
 
             Tokkitai_Valine3gEntity.this.level().addFreshEntity(ammo);
         }

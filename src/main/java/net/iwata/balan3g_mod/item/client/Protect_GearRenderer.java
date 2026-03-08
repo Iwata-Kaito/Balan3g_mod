@@ -7,5 +7,7 @@ import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 public class Protect_GearRenderer extends GeoArmorRenderer<Protect_GearItem> {
     public Protect_GearRenderer() {
         super(new Protect_GearModel());
+        addRenderLayer(new AutoGlowingGeoLayer<>(this));
     }
+
 }

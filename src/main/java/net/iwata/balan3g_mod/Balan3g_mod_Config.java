@@ -37,14 +37,41 @@ public class Balan3g_mod_Config
                     v -> v instanceof String s && ResourceLocation.isValidResourceLocation(s)
             );
 
+    public static final ForgeConfigSpec.ConfigValue<List<? extends Double>> For_Administrator = BUILDER
+            .comment("")
+            .comment("For Administrator(Double)")
+            .defineListAllowEmpty(
+                    "for_administrator",
+                    List.of(800.0D, 2.8D, 300.0D, 1.0D,40.0D, 0.90D, 0.999D),
+                    v -> v instanceof Double
+            );
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static long spawn_count;
     public static long Protect_Gear_threshold;
 
+    public static double FIRE_RPM;
+    public static double BULLET_SPEED;
+    public static double MAX_HEALTH;
+    public static double MAUSER_AMMO_DAMAGE;
+    public static double MAUSER_AMMO_MAX_LIFE_TICKS;
+    public static double MAUSER_AMMO_HURT;
+    public static double MAUSER_AMMO_SETHEALTH;
+
+
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
         spawn_count = SPAWN_COUNT.get();
         Protect_Gear_threshold = Protect_Gear_THRESHOLD.get();
+
+        List<? extends Double> for_administrator = For_Administrator.get();
+        FIRE_RPM = for_administrator.get(0);
+        BULLET_SPEED = for_administrator.get(1);
+        MAX_HEALTH = for_administrator.get(2);
+        MAUSER_AMMO_DAMAGE = for_administrator.get(3);
+        MAUSER_AMMO_MAX_LIFE_TICKS = for_administrator.get(4);
+        MAUSER_AMMO_HURT = for_administrator.get(5);
+        MAUSER_AMMO_SETHEALTH = for_administrator.get(6);
     }
 }

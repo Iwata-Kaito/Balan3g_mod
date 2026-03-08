@@ -1,5 +1,6 @@
 package net.iwata.balan3g_mod.entity.custom;
 
+import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.minecraft.world.entity.Entity;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -17,8 +18,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Mauser_AmmoEntity extends ThrowableProjectile implements GeoEntity, GeoAnimatable {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
-    private static final float DAMAGE = 1;
-    private static final int MAX_LIFE_TICKS = 40;
+    private static final float DAMAGE = (float) Balan3g_mod_Config.MAUSER_AMMO_DAMAGE;
+    private static final double MAX_LIFE_TICKS = Balan3g_mod_Config.MAUSER_AMMO_MAX_LIFE_TICKS;
     private int lifeTicks = 0;
     private LivingEntity shooter = null;
 
@@ -50,10 +51,10 @@ public class Mauser_AmmoEntity extends ThrowableProjectile implements GeoEntity,
         if (!this.level().isClientSide && entity != shooter && entity instanceof LivingEntity living) {
             double r = this.level().random.nextDouble(); // [0.0, 1.0)
 
-            if (r < 0.90) {
-                living.hurt(this.damageSources().thrown(this, shooter), DAMAGE*2);
-            } else if (r < 0.999) {
-                living.setHealth(living.getHealth() - DAMAGE);
+            if (r < Balan3g_mod_Config.MAUSER_AMMO_HURT) {
+                living.hurt(this.damageSources().thrown(this, shooter), (DAMAGE*2)+1);
+            } else if (r < Balan3g_mod_Config.MAUSER_AMMO_SETHEALTH) {
+                living.setHealth((float) (living.getHealth() - DAMAGE));
             } else {
                 living.setHealth(0.0F);
             }

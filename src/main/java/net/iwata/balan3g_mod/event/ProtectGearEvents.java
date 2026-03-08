@@ -14,6 +14,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -66,14 +67,14 @@ public final class ProtectGearEvents {
         MobEffect effect = instance.getEffect();
 
         if (effect.isInstantenous()) {
-            event.setResult(MobEffectEvent.Applicable.Result.DENY);
+            event.setResult(Event.Result.DENY);
             return;
         }
 
         ResourceLocation effectId = ForgeRegistries.MOB_EFFECTS.getKey(effect);
 
         if (effectId == null || !Balan3g_mod_Config.ALLOWED_EFFECTS.get().contains(effectId.toString())) {
-            event.setResult(MobEffectEvent.Applicable.Result.DENY);
+            event.setResult(Event.Result.DENY);
         }
     }
 
@@ -86,7 +87,7 @@ public final class ProtectGearEvents {
     }
 
     private static boolean isProtectGear(ItemStack stack) {
-        return !stack.isEmpty() && stack.is(ModItems.Protectgear_Helmet.get()) || stack.is(ModItems.Protectgear_Chestplate.get()) || stack.is(ModItems.Protectgear_Leggings.get()) || stack.is(ModItems.Protectgear_Boots.get());
+        return !stack.isEmpty() && (stack.is(ModItems.Protectgear_Helmet.get()) || stack.is(ModItems.Protectgear_Chestplate.get()) || stack.is(ModItems.Protectgear_Leggings.get()) || stack.is(ModItems.Protectgear_Boots.get()));
     }
 
     //暗視、耐火、水中呼吸を付与
