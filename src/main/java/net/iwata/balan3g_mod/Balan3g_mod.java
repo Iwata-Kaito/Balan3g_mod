@@ -11,6 +11,7 @@ import net.iwata.balan3g_mod.entity.client.Mauser_AmmoRenderer;
 import net.iwata.balan3g_mod.entity.client.Tokkitai_Valine3gRenderer;
 import net.iwata.balan3g_mod.item.ModCreativeModTabs;
 import net.iwata.balan3g_mod.item.ModItems;
+import net.iwata.balan3g_mod.sound.ModSounds;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -45,6 +46,7 @@ public class Balan3g_mod {
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

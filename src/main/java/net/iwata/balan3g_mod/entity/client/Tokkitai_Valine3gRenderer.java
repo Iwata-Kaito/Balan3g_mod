@@ -3,13 +3,10 @@ package net.iwata.balan3g_mod.entity.client;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.entity.custom.Tokkitai_Valine3gEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
-import software.bernie.geckolib.renderer.layer.ItemArmorGeoLayer;
 
 public class Tokkitai_Valine3gRenderer extends GeoEntityRenderer<Tokkitai_Valine3gEntity> {
     public Tokkitai_Valine3gRenderer(EntityRendererProvider.Context renderManager) {
@@ -22,5 +19,10 @@ public class Tokkitai_Valine3gRenderer extends GeoEntityRenderer<Tokkitai_Valine
     @Override
     public ResourceLocation getTextureLocation(Tokkitai_Valine3gEntity animatable){
         return ResourceLocation.fromNamespaceAndPath(Balan3g_mod.MOD_ID, "textures/entity/tokkitai_valine3g.png");
+    }
+
+    @Override
+    public int getPackedOverlay(Tokkitai_Valine3gEntity animatable, float u, float partialTick) {
+        return OverlayTexture.NO_OVERLAY;
     }
 }

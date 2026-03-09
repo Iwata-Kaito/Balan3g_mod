@@ -42,7 +42,7 @@ public class Balan3g_mod_Config
             .comment("For Administrator(Double)")
             .defineListAllowEmpty(
                     "for_administrator",
-                    List.of(800.0D, 2.8D, 300.0D, 1.0D,40.0D, 0.90D, 0.999D),
+                    List.of(800.0D, 5.0D, 300.0D, 1.0D,40.0D, 0.90D, 0.999D),
                     v -> v instanceof Double
             );
 
