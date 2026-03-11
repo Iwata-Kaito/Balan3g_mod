@@ -3,6 +3,7 @@ package net.iwata.balan3g_mod.event;
 import net.iwata.balan3g_mod.Balan3g_mod;
 import net.iwata.balan3g_mod.Balan3g_mod_Config;
 import net.iwata.balan3g_mod.item.ModItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffect;
@@ -104,12 +105,25 @@ public final class ProtectGearEvents {
         ensureEffect(player, MobEffects.FIRE_RESISTANCE, 310, 0);
         ensureEffect(player, MobEffects.WATER_BREATHING, 310, 0);
     }
-
     private static void ensureEffect(net.minecraft.world.entity.LivingEntity entity, net.minecraft.world.effect.MobEffect effect, int durationTicks, int amplifier) {
         var current = entity.getEffect(effect);
 
         if (current != null && current.getDuration() > 300) return;
 
         entity.addEffect(new MobEffectInstance(effect, durationTicks, amplifier, true, false, false));
+    }
+
+    //ダメージの画面揺れキャンセル
+    @SubscribeEvent
+    public static void onRenderTick(TickEvent.RenderTickEvent event) {
+        if (event.phase != TickEvent.Phase.START) return;
+
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null || mc.level == null) return;
+
+        if (!isWearingFullProtectGear(mc.player)) return;
+
+        mc.player.hurtTime = 0;
+        mc.player.hurtDuration = 0;
     }
 }
