@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -109,7 +110,11 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllerRegistrar.add(new AnimationController<>(this, "move_controller", 0, this::predicate));
+        controllerRegistrar.add(
+                new AnimationController<>(this, "shoot_controller", state -> PlayState.STOP)
+                        .triggerableAnim("muzzle_flash", RawAnimation.begin().thenPlay("muzzle_flash"))
+        );
     }
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
@@ -125,6 +130,32 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    private void faceTargetForShooting(LivingEntity target) {
+        Vec3 from = this.position().add(0.0, this.getEyeHeight(), 0.0);
+        Vec3 to = target.position().add(0.0, target.getBbHeight() * 0.8, 0.0);
+        Vec3 diff = to.subtract(from);
+
+        if (diff.lengthSqr() < 1.0E-6) {
+            return;
+        }
+
+        double horizontal = Math.sqrt(diff.x * diff.x + diff.z * diff.z);
+        float yaw = (float) (Mth.atan2(diff.z, diff.x) * (180.0F / Math.PI)) - 90.0F;
+        float pitch = (float) (-(Mth.atan2(diff.y, horizontal) * (180.0F / Math.PI)));
+
+        this.setYRot(yaw);
+        this.setXRot(pitch);
+        this.yBodyRot = yaw;
+        this.yHeadRot = yaw;
+
+        this.yRotO = yaw;
+        this.xRotO = pitch;
+        this.yBodyRotO = yaw;
+        this.yHeadRotO = yaw;
+
+        this.getLookControl().setLookAt(target, 360.0F, 360.0F);
     }
 
     //armor,effect付与
@@ -191,8 +222,8 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
             LivingEntity target = Tokkitai_Valine3gEntity.this.getTarget();
             if (target == null || !target.isAlive()) return;
 
-
-            Tokkitai_Valine3gEntity.this.getLookControl().setLookAt(target, 30.0F, 30.0F);
+            Tokkitai_Valine3gEntity.this.getNavigation().stop();
+            Tokkitai_Valine3gEntity.this.faceTargetForShooting(target);
 
             double shotsPerTick = Balan3g_mod_Config.FIRE_RPM / 1200.0D;
             fireAccumulator += shotsPerTick;
@@ -217,6 +248,9 @@ public class Tokkitai_Valine3gEntity extends Animal implements GeoEntity {
             ammo.setDeltaMovement(dir.scale(Balan3g_mod_Config.BULLET_SPEED));
 
             Tokkitai_Valine3gEntity.this.level().addFreshEntity(ammo);
+
+            Tokkitai_Valine3gEntity.this.triggerAnim("shoot_controller", "muzzle_flash");
+
             Tokkitai_Valine3gEntity.this.level().playSound(
                     null,
                     Tokkitai_Valine3gEntity.this.getX(),
